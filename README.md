@@ -1,2 +1,2 @@
 # giac-ent-firefox
-This is our team file share.
+This is the file share for Team Allen/Currie/Polley
