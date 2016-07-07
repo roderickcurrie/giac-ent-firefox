@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Peach xmlns="http://peachfuzzer.com/2012/Peach" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://peachfuzzer.com/2012/Peach /peach/peach.xsd">
+
+	<!-- TODO: Create data model -->
+	<DataModel name="PNGDataModel">
+		<Blob />
+	</DataModel>
+
+	<!-- TODO: Create state model -->
+	<StateModel name="PNGState" initialState="Initial">
+		<State name="Initial">
+			
+			<Action type="output">
+				<DataModel ref="PNGDataModel"/>
+				<Data fileName="samples_png/*.png" />
+			</Action>
+
+			<Action type="close"/>
+
+			<Action type="call" method="LaunchViewer" publisher="Peach.Agent"/>
+		</State>
+	</StateModel>
+
+	<!-- TODO: Configure Agent -->
+	<Agent name="FFAgent" >
+        <Monitor class="CrashWrangler">
+            <Param name="Command" value="/Applications/Firefox.app/Contents/MacOS/firefox" />
+	    <!-- Pass the "-no-remote" argument to Firefox to make sure each instance runs independantly -->
+            <Param name="Arguments" value="-no-remote fuzzed.png" />
+            <Param name="UseDebugMalloc" value="false" />
+            <Param name="ExploitableReads" value="true" />
+
+	    <!-- Crashwrangler was downloaded from the peach site.
+		 Note that there *is* a version included in peach, but running on yosemite, this
+		 separate download worked better.
+
+		 There are binary versions included, and one for Yosemite, but I ran 'make' and used the 
+		 locally compiled version instead
+	    -->
+            <Param name="ExecHandler" value="/Users/ubahmapk/Downloads/crashwrangler/exc_handler" />
+            <Param name="StartOnCall" value="LaunchViewer" />
+        </Monitor>
+	</Agent>
+
+	<Test name="Default">
+		<Agent ref="FFAgent" platform="osx" />
+		<StateModel ref="PNGState"/>
+
+		<!-- TODO: Configure a publisher -->
+		<Publisher class="File">
+			<Param name="FileName" value="fuzzed.png"/>
+		</Publisher>
+
+		<!-- OPTIONAL: Configure a strategy -->
+		<!-- Recommendation: Do not start with Random, but with Sequential
+ 		     http://community.peachfuzzer.com/v3/MutationStrategies.html
+		-->
+		<Strategy class="Random"/>
+		
+		<Logger class="Filesystem">
+			<Param name="Path" value="logs"/>
+		</Logger>
+	</Test>
+
+</Peach>
+<!-- end -->
