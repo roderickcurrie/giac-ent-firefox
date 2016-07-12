@@ -1,0 +1,26 @@
+----------------------------------------------------------
+Codenomicon
+----------------------------------------------------------
+
+$10k / protocol
+Some bundles are $15k e.g. TCP/IP
+Total of 290 protocols
+
+----------------------------------------------------------
+Peach
+----------------------------------------------------------
+
+Enterprise
+- Allows you to build your own pits or customize our own
+- Integrates into other build tools
+
+Professional
+- Doesn't allow custom pits (!?)
+
+Annual Subscription based license
+- One pit $5k/year
+- $16-$21k for a 6 pit pack
+- $35k for some of the larger pit packs
+
+Peach also has a per-project license for single or short term engagements
+
