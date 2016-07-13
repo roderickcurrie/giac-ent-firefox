@@ -2,12 +2,12 @@
 <Peach xmlns="http://peachfuzzer.com/2012/Peach" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://peachfuzzer.com/2012/Peach /peach/peach.xsd">
 
-	<!-- TODO: Create data model -->
+	<!-- Data model -->
 	<DataModel name="PNGDataModel">
 		<Blob />
 	</DataModel>
 
-	<!-- TODO: Create state model -->
+	<!-- State model -->
 	<StateModel name="PNGState" initialState="Initial">
 		<State name="Initial">
 			
@@ -22,7 +22,7 @@
 		</State>
 	</StateModel>
 
-	<!-- TODO: Configure Agent -->
+	<!-- Configure Agent -->
 	<Agent name="FFAgent" >
         <Monitor class="CrashWrangler">
             <Param name="Command" value="/Applications/Firefox.app/Contents/MacOS/firefox" />
@@ -47,7 +47,7 @@
 		<Agent ref="FFAgent" platform="osx" />
 		<StateModel ref="PNGState"/>
 
-		<!-- TODO: Configure a publisher -->
+		<!-- Configure a publisher -->
 		<Publisher class="File">
 			<Param name="FileName" value="fuzzed.png"/>
 		</Publisher>
